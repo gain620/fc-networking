@@ -24,10 +24,11 @@ sudo curl -X PUT \
     'http://localhost/network-interfaces/eth0' \
     -H accept:application/json \
     -H content-type:application/json \
-    -d '{
-        "iface_id": "eth0",
-        "host_dev_name": "$TAP_DEV"
-    }'
+    -d "{
+     \"iface_id\": \"eth0\",
+     \"host_dev_name\": \"$TAP_DEV\"
+   }"
+
 
 # Configure the first drive, pointing at our disk image
 sudo curl --unix-socket /tmp/firecracker.socket -i \
