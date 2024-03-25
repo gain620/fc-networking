@@ -33,3 +33,12 @@ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 sudo iptables -t nat -A POSTROUTING -o $IFNAME -j MASQUERADE
 sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i $TAP_DEV -o $IFNAME -j ACCEPT
+
+
+#ip addr add 172.16.0.5/24 dev eth0
+#ip link set eth0 up
+#ip route add default via 172.16.0.1 dev eth0
+
+# Set up nameserver
+#echo "nameserver 1.1.1.1" > /etc/resolv.conf
+

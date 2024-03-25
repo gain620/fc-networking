@@ -2,7 +2,7 @@
 
 # Update and install necessary tools
 sudo apt update -y
-sudo apt install acl git build-essential -y
+sudo apt install acl git build-essential dnsutils -y
 
 sudo setfacl -m u:${USER}:rw /dev/kvm
 

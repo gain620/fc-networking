@@ -16,7 +16,7 @@ const paths = "PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 // main starts an init process that can prepare an environment and start a shell
 // after the Kernel has started.
 func main() {
-	fmt.Printf("Lab init booting\nCopyright Alex Ellis 2022, OpenFaaS Ltd\n")
+	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2023\n")
 
 	mount("none", "/proc", "proc", 0)
 	mount("none", "/dev/pts", "devpts", 0)
@@ -25,9 +25,9 @@ func main() {
 	mount("none", "/sys", "sysfs", 0)
 	mount("none", "/sys/fs/cgroup", "cgroup", 0)
 
-	setHostname("lab-vm")
+	setHostname("fc-microvm")
 
-	fmt.Printf("Lab starting /bin/sh\n")
+	fmt.Printf("MicroVM starting... /bin/sh\n")
 
 	cmd := exec.Command("/bin/sh")
 
@@ -41,6 +41,8 @@ func main() {
 		panic(fmt.Sprintf("could not start /bin/sh, error: %s", err))
 	}
 
+	//netSetUp := setNetwork()
+
 	err = cmd.Wait()
 	if err != nil {
 		panic(fmt.Sprintf("could not wait for /bin/sh, error: %s", err))
@@ -52,6 +54,13 @@ func setHostname(hostname string) {
 	if err != nil {
 		panic(fmt.Sprintf("cannot set hostname to %s, error: %s", hostname, err))
 	}
+}
+
+func setNetwork() {
+	exec.Command("/bin/sh", "-c", "ip link set dev eth0 up")
+	// ip link set dev eth0 up
+	// ip addr add
+	// ip route add default via
 }
 
 func mount(source, target, filesystemtype string, flags uintptr) {
