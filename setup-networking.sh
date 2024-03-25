@@ -3,7 +3,10 @@
 # Run this once on the host, or upon reboot
 
 TAP_DEV=fctap0
+HOST_IFNAME=enP2p4s0
 
+TAP_IP="172.16.0.1"
+MASK_SHORT="/24"
 
 # Add a tap device to act as a bridge between the microVM
 # and the host.
@@ -21,7 +24,7 @@ ip addr show dev $TAP_DEV
 # Change IFNAME to match your main ethernet adapter, the one that
 # accesses the Internet - check "ip addr" or "ifconfig" if you don't 
 # know which one to use.
-IFNAME=enP2p4s0
+IFNAME=$HOST_IFNAME
 
 # Enable IP forwarding
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"

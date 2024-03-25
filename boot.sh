@@ -5,6 +5,8 @@
 
 # Also sets the network IP address statically, via a kernel parameter
 
+TAP_DEV=fctap0
+
 sudo curl --unix-socket /tmp/firecracker.socket -i \
       -X PUT 'http://localhost/boot-source'   \
       -H 'Accept: application/json'           \
@@ -24,7 +26,7 @@ sudo curl -X PUT \
     -H content-type:application/json \
     -d '{
         "iface_id": "eth0",
-        "host_dev_name": "ftap0"
+        "host_dev_name": "$TAP_DEV"
     }'
 
 # Configure the first drive, pointing at our disk image
