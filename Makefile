@@ -2,7 +2,7 @@
 
 all: root extract image
 
-export arch="x86_64"
+export arch=$(shell uname -m)
 
 # init-local builds a static binary for local testing, but the lab uses a multi-stage
 # Dockerfile for this instead - https://docs.docker.com/develop/develop-images/multistage-build/
@@ -16,7 +16,7 @@ root:
 # Get the AWS sample image
 # change to Image when using aarch64, instead of vmlinux.bin
 kernel:
-	curl -o vmlinux -S -L "https://s3.amazonaws.com/spec.ccfc.min/img/quickstart_guide/$(arch)/kernels/vmlinux.bin"
+	curl -o vmlinux -S -L "https://s3.amazonaws.com/spec.ccfc.min/firecracker-ci/v1.8/${arch}/vmlinux-5.10.209"
 	file ./vmlinux
 
 # Extract a root filesystem into a tar
