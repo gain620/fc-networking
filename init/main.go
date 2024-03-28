@@ -27,7 +27,7 @@ func main() {
 
 	setHostname("fc-microvm")
 
-	fmt.Printf("MicroVM starting... /bin/sh\n")
+	fmt.Printf("Sandbox MicroVM starting... /bin/sh\n")
 
 	cmd := exec.Command("/bin/sh")
 
