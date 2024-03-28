@@ -27,12 +27,12 @@ extract:
 	docker export extract -o rootfs.tar
 	docker rm -f extract
 
-# Allocate a 5GB disk image, then extract the rootfs.tar from the 
+# Allocate a 1GB disk image, then extract the rootfs.tar from the
 # container into it
 image:
 	set -e 
 	rm -rf rootfs.img || : ;\
-	sudo fallocate -l 5G ./rootfs.img  ;\
+	sudo fallocate -l 1G ./rootfs.img  ;\
 	sudo mkfs.ext4 ./rootfs.img  ;\
 	TMP=$$(mktemp -d)  ;\
 	echo $$TMP  ;\
