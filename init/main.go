@@ -114,4 +114,16 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("could not wait for .NET application, error: %s", err))
 	}
+
+	// Start a new shell
+	shell := exec.Command("/bin/sh")
+	shell.Env = append(shell.Env, paths)
+	shell.Stdin = os.Stdin
+	shell.Stdout = os.Stdout
+	shell.Stderr = os.Stderr
+
+	err = shell.Run()
+	if err != nil {
+		panic(fmt.Sprintf("could not start shell, error: %s", err))
+	}
 }
