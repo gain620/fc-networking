@@ -79,7 +79,8 @@ func mount(source, target, filesystemtype string, flags uintptr) {
 }
 
 func main() {
-	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2023\n")
+	PrintLogo()
+	fmt.Printf("Firecracker PoC MicroVM init booting...\nGain Chang 2024\n")
 
 	mount("none", "/proc", "proc", 0)
 	mount("none", "/dev/pts", "devpts", 0)
@@ -90,7 +91,7 @@ func main() {
 
 	setHostname("fc-microvm")
 
-	fmt.Printf("MicroVM starting and running dotnet app ... \n")
+	fmt.Printf("MicroVM started and running dotnet app ... \n")
 
 	// Replace "/path/to/your/app.dll" with the path to your .NET application
 	cmd := exec.Command("/usr/bin/dotnet", "/init/dotnet-hello/ConsoleApp2.dll")
@@ -106,7 +107,8 @@ func main() {
 		panic(fmt.Sprintf("could not start .NET application, error: %s", err))
 	}
 
-	fmt.Printf("Started .NET application with PID %d\n", cmd.Process.Pid)
+	fmt.Printf("Started .NET application\n")
+	fmt.Printf("--> PID : %d\n", cmd.Process.Pid)
 
 	//netSetUp := setNetwork()
 
