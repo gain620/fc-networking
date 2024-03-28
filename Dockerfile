@@ -11,3 +11,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19
 RUN apk add --no-cache curl ca-certificates htop
 
 COPY --from=build /go/src/github.com/alexellis/firecracker-init-lab/init/init /init
+COPY dotnet /dotnet
