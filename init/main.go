@@ -95,8 +95,8 @@ func main() {
 	// Replace "/path/to/your/app.dll" with the path to your .NET application
 	cmd := exec.Command("/usr/bin/dotnet", "/init/dotnet-hello/ConsoleApp2.dll")
 
-	cmd.Env = append(os.Environ(), paths)
-	//cmd.Env = append(cmd.Env, paths)
+	//cmd.Env = append(os.Environ(), paths)
+	cmd.Env = append(cmd.Env, paths)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
