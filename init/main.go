@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/common-nighthawk/go-figure"
 	"log"
 	"os"
 	"os/exec"
@@ -78,8 +79,18 @@ func mount(source, target, filesystemtype string, flags uintptr) {
 	}
 }
 
+func printLogo() {
+	//dev := figure.NewColorFigure("Gain", "", "green", true)
+	//dev.Print()
+	app := figure.NewColorFigure("FC-VM", "", "blue", true)
+	app.Print()
+	ver := figure.NewColorFigure("1.0.0", "", "red", true)
+	ver.Print()
+	fmt.Println()
+}
+
 func main() {
-	PrintLogo()
+	printLogo()
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nGain Chang 2024\n")
 
 	mount("none", "/proc", "proc", 0)
