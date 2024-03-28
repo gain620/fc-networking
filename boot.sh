@@ -13,7 +13,7 @@ sudo curl --unix-socket /tmp/firecracker.socket -i \
       -H 'Content-Type: application/json'     \
       -d "{ 
             \"kernel_image_path\": \"./vmlinux\", 
-            \"boot_args\": \"console=keep_bootcon ttyS0 reboot=k panic=1 pci=off init=/init/init-go ip=172.16.0.2::172.16.0.1:255.255.255.0::eth0:off\"
+            \"boot_args\": \"console=keep_bootcon ttyS0 reboot=k panic=1 pci=off init=/init ip=172.16.0.2::172.16.0.1:255.255.255.0::eth0:off\"
        }"
        
 # Configure a network device, notice the host_dev_name macthes what 
