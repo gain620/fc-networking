@@ -15,7 +15,7 @@ const paths = "PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 // main starts an init process that can prepare an environment and start a shell
 // after the Kernel has started.
-func main2() {
+func main() {
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2024\n")
 
 	mount("none", "/proc", "proc", 0)
@@ -78,7 +78,7 @@ func mount(source, target, filesystemtype string, flags uintptr) {
 	}
 }
 
-func main() {
+func main2() {
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2023\n")
 
 	mount("none", "/proc", "proc", 0)
