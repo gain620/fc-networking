@@ -15,7 +15,7 @@ const paths = "PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 // main starts an init process that can prepare an environment and start a shell
 // after the Kernel has started.
-func main() {
+func main2() {
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2024\n")
 
 	mount("none", "/proc", "proc", 0)
@@ -78,7 +78,7 @@ func mount(source, target, filesystemtype string, flags uintptr) {
 	}
 }
 
-func main2() {
+func main() {
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2023\n")
 
 	mount("none", "/proc", "proc", 0)
@@ -93,7 +93,7 @@ func main2() {
 	fmt.Printf("MicroVM starting and running dotnet app ... \n")
 
 	// Replace "/path/to/your/app.dll" with the path to your .NET application
-	cmd := exec.Command("dotnet", "/init/dotnet-hello/ConsoleApp2.dll")
+	cmd := exec.Command("/usr/bin/dotnet", "/init/dotnet-hello/ConsoleApp2.dll")
 
 	cmd.Env = append(os.Environ(), paths)
 	//cmd.Env = append(cmd.Env, paths)
