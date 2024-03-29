@@ -127,6 +127,8 @@ func main() {
 
 	//netSetUp := setNetwork()
 
+	trackDuration(dotnetStart, "Dotnet application2")
+
 	err = cmd.Wait()
 	if err != nil {
 		panic(fmt.Sprintf("could not wait for .NET application, error: %s", err))
