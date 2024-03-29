@@ -7,7 +7,7 @@ COPY init .
 RUN go build --tags netgo --ldflags '-s -w -extldflags "-lm -lstdc++ -static"' -o init main.go
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine3.19
-FROM alpine3.19
+FROM alpine:3.19
 
 RUN apk add --no-cache curl ca-certificates htop
 
