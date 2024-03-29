@@ -32,7 +32,7 @@ extract:
 image:
 	set -e 
 	rm -rf rootfs.img || : ;\
-	sudo fallocate -l 256M ./rootfs.img  ;\
+	sudo fallocate -l 128M ./rootfs.img  ;\
 	sudo mkfs.ext4 ./rootfs.img  ;\
 	TMP=$$(mktemp -d)  ;\
 	echo $$TMP  ;\
