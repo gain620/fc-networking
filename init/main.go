@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"time"
 
 	"syscall"
 )
@@ -90,6 +91,7 @@ func printLogo() {
 }
 
 func main() {
+	vmInitStart := time.Now()
 	printLogo()
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nGain Chang 2024\n")
 
@@ -104,6 +106,7 @@ func main() {
 
 	fmt.Printf("MicroVM started and running dotnet app ... \n")
 
+	dotnetStart := time.Now()
 	// Replace "/path/to/your/app.dll" with the path to your .NET application
 	cmd := exec.Command("/usr/bin/dotnet", "/init/dotnet-hello/ConsoleApp2.dll")
 
@@ -118,6 +121,7 @@ func main() {
 		panic(fmt.Sprintf("could not start .NET application, error: %s", err))
 	}
 
+	trackDuration(dotnetStart, "Dotnet application")
 	fmt.Printf("Started .NET application\n")
 	fmt.Printf("--> PID : %d\n", cmd.Process.Pid)
 
@@ -139,4 +143,10 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("could not start shell, error: %s", err))
 	}
+	trackDuration(vmInitStart, "VM init")
+}
+
+func trackDuration(start time.Time, desc string) {
+	elapsed := time.Since(start)
+	log.Printf("%s took %s", desc, elapsed)
 }
