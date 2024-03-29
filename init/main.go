@@ -148,5 +148,5 @@ func main() {
 
 func trackDuration(start time.Time, desc string) {
 	elapsed := time.Since(start)
-	log.Printf("%s took %s", desc, elapsed)
+	log.Printf("%s took %s", desc, elapsed.Seconds())
 }
