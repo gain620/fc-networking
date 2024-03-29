@@ -17,7 +17,9 @@ const paths = "PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 // main starts an init process that can prepare an environment and start a shell
 // after the Kernel has started.
-func main2() {
+func main() {
+	vmInitStart := time.Now()
+
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nCopyright Alex Ellis 2024\n")
 
 	mount("none", "/proc", "proc", 0)
@@ -44,6 +46,8 @@ func main2() {
 	}
 
 	//netSetUp := setNetwork()
+
+	trackDuration(vmInitStart, "VM init")
 
 	err = cmd.Wait()
 	if err != nil {
@@ -90,7 +94,7 @@ func printLogo() {
 	fmt.Println()
 }
 
-func main() {
+func main3() {
 	vmInitStart := time.Now()
 	printLogo()
 	fmt.Printf("Firecracker PoC MicroVM init booting...\nGain Chang 2024\n")
