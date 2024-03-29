@@ -139,11 +139,11 @@ func main() {
 	shell.Stdout = os.Stdout
 	shell.Stderr = os.Stderr
 
+	trackDuration(vmInitStart, "VM init")
 	err = shell.Run()
 	if err != nil {
 		panic(fmt.Sprintf("could not start shell, error: %s", err))
 	}
-	trackDuration(vmInitStart, "VM init")
 }
 
 func trackDuration(start time.Time, desc string) {
