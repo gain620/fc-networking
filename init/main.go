@@ -121,20 +121,17 @@ func main() {
 		panic(fmt.Sprintf("could not start .NET application, error: %s", err))
 	}
 
-	trackDuration(dotnetStart, "Dotnet application")
 	fmt.Printf("Started .NET application\n")
 	fmt.Printf("--> PID : %d\n", cmd.Process.Pid)
 
 	//netSetUp := setNetwork()
-
-	trackDuration(dotnetStart, "Dotnet application2")
 
 	err = cmd.Wait()
 	if err != nil {
 		panic(fmt.Sprintf("could not wait for .NET application, error: %s", err))
 	}
 
-	trackDuration(dotnetStart, "Dotnet application3")
+	trackDuration(dotnetStart, "Dotnet application")
 
 	// Start a new shell
 	shell := exec.Command("/bin/sh")
