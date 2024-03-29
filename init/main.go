@@ -134,6 +134,8 @@ func main() {
 		panic(fmt.Sprintf("could not wait for .NET application, error: %s", err))
 	}
 
+	trackDuration(dotnetStart, "Dotnet application3")
+
 	// Start a new shell
 	shell := exec.Command("/bin/sh")
 	shell.Env = append(shell.Env, paths)
